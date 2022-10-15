@@ -6,7 +6,7 @@
       <the-card class="mr-5" title="ETH gas price" content="19 gwei" color="bg-indigo-100" />
       <the-card class="" title="BTC Dominance" content="38%" color="bg-yellow-100" />
     </div>
-    <the-table class=""/>
+    <the-table class="" />
   </div>
 </template>
 

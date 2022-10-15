@@ -2,7 +2,8 @@
     <table v-if="!loading" class="table-fixed border-spacing-3 border-collapse w-full mt-4">
         <tbody>
             <tr class="font-bold">
-                <td class="hover:text-blue-900 cursor-pointer select-none" width="3%" @click="sortBy('market_cap_rank')">
+                <td class="hover:text-blue-900 cursor-pointer select-none" width="3%"
+                    @click="sortBy('market_cap_rank')">
                     <span>#</span>
                     <svg v-if="sortby == 'market_cap_rank'" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
@@ -26,7 +27,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
                     </svg>
                 </td>
-                <td class="hover:text-blue-900 cursor-pointer select-none" @click="sortBy('price_change_percentage_24h')">
+                <td class="hover:text-blue-900 cursor-pointer select-none"
+                    @click="sortBy('price_change_percentage_24h')">
                     <span>24H %</span>
                     <svg v-if="sortby == 'price_change_percentage_24h'" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
@@ -45,8 +47,8 @@
                 </td>
                 <td class="hover:text-blue-900 cursor-pointer select-none" @click="sortBy('market_cap')" width="10%">
                     <span>MARKET CAP</span>
-                    <svg v-if="sortby == 'market_cap'" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
+                    <svg v-if="sortby == 'market_cap'" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
                         :class="{'rotate-180': !reverse}">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
                     </svg>
