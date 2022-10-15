@@ -9,10 +9,10 @@
         </div>
     </td>
     <td >$ {{price}}</td>
-    <td class="text-green-800" v-if="tfh >= 0">{{tfh}} %</td>
-    <td class="text-red-800" v-if="tfh < 0">{{tfh}} %</td>
-    <td class="text-green-800" v-if="sd >= 0">{{sd}} %</td>
-    <td class="text-red-800" v-if="sd < 0">{{sd}} %</td>
+    <td class="text-green-800 md:text-base text-xs" v-if="tfh >= 0">{{tfh}} %</td>
+    <td class="text-red-800 md:text-base text-xs" v-if="tfh < 0">{{tfh}} %</td>
+    <td class="text-green-800 md:text-base text-xs" v-if="sd >= 0">{{sd}} %</td>
+    <td class="text-red-800 md:text-base text-xs" v-if="sd < 0">{{sd}} %</td>
     <td>{{cap}}</td>
    </tr> 
 </template>

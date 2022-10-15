@@ -1,67 +1,78 @@
 <template>
-    <table v-if="!loading" class="table-fixed border-spacing-3 border-collapse w-full mt-4">
-        <tbody>
-            <tr class="font-bold">
-                <td class="hover:text-blue-900 cursor-pointer select-none" width="3%"
-                    @click="sortBy('market_cap_rank')">
-                    <span>#</span>
-                    <svg v-if="sortby == 'market_cap_rank'" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
-                        :class="{'rotate-180': !reverse}">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
-                    </svg>
+    <div class="overflow-x-scroll overflow-y-visible p-0">
+        <table v-if="!loading" class="border-spacing-3 border-collapse w-full mt-4">
+            <tbody class="sm:table-row-group inline-block">
+                <tr class="font-bold">
+                    <td class="hover:text-blue-900 cursor-pointer select-none" width="3%"
+                        @click="sortBy('market_cap_rank')">
+                        <span>#</span>
+                        <svg v-if="sortby == 'market_cap_rank'" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
+                            :class="{'rotate-180': !reverse}">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+                        </svg>
 
-                </td>
-                <td class="hover:text-blue-900 cursor-pointer select-none" width="25%" @click="sortBy('symbol')">
-                    <span>ASSET</span>
-                    <svg v-if="sortby == 'symbol'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" class="w-4 h-4 inline" :class="{'rotate-180': !reverse}">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
-                    </svg>
-                </td>
-                <td class="hover:text-blue-900 cursor-pointer select-none" @click="sortBy('current_price')">
-                    <span>PRICE</span>
-                    <svg v-if="sortby == 'current_price'" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
-                        :class="{'rotate-180': !reverse}">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
-                    </svg>
-                </td>
-                <td class="hover:text-blue-900 cursor-pointer select-none"
-                    @click="sortBy('price_change_percentage_24h')">
-                    <span>24H %</span>
-                    <svg v-if="sortby == 'price_change_percentage_24h'" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
-                        :class="{'rotate-180': !reverse}">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
-                    </svg>
-                </td>
-                <td class="hover:text-blue-900 cursor-pointer select-none"
-                    @click="sortBy('price_change_percentage_7d_in_currency')">
-                    <span>7D %</span>
-                    <svg v-if="sortby == 'price_change_percentage_7d_in_currency'" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
-                        :class="{'rotate-180': !reverse}">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
-                    </svg>
-                </td>
-                <td class="hover:text-blue-900 cursor-pointer select-none" @click="sortBy('market_cap')" width="10%">
-                    <span>MARKET CAP</span>
-                    <svg v-if="sortby == 'market_cap'" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
-                        :class="{'rotate-180': !reverse}">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
-                    </svg>
-                </td>
-            </tr>
+                    </td>
+                    <td class="hover:text-blue-900 cursor-pointer select-none" width="25%" @click="sortBy('symbol')">
+                        <span>ASSET</span>
+                        <svg v-if="sortby == 'symbol'" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
+                            :class="{'rotate-180': !reverse}">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+                        </svg>
+                    </td>
+                    <td class="hover:text-blue-900 cursor-pointer select-none" @click="sortBy('current_price')">
+                        <span>PRICE</span>
+                        <svg v-if="sortby == 'current_price'" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
+                            :class="{'rotate-180': !reverse}">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+                        </svg>
+                    </td>
+                    <td class="hover:text-blue-900 cursor-pointer select-none"
+                        @click="sortBy('price_change_percentage_24h')">
+                        <span>24H %</span>
+                        <svg v-if="sortby == 'price_change_percentage_24h'" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            class="w-4 h-4 inline" :class="{'rotate-180': !reverse}">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+                        </svg>
+                    </td>
+                    <td class="hover:text-blue-900 cursor-pointer select-none"
+                        @click="sortBy('price_change_percentage_7d_in_currency')">
+                        <span>7D %</span>
+                        <svg v-if="sortby == 'price_change_percentage_7d_in_currency'"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-4 h-4 inline" :class="{'rotate-180': !reverse}">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+                        </svg>
+                    </td>
+                    <td class="hover:text-blue-900 cursor-pointer select-none" @click="sortBy('market_cap')"
+                        width="10%">
+                        <span>MARKET CAP</span>
+                        <svg v-if="sortby == 'market_cap'" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 inline"
+                            :class="{'rotate-180': !reverse}">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+                        </svg>
+                    </td>
+                </tr>
 
-            <the-row v-for="coin in coins" :key="coin.id" :num="coin.market_cap_rank" :icon="coin.image"
-                :ticker="coin.symbol.toUpperCase()" :name="coin.name" :price="coin.current_price"
-                :tfh="coin.price_change_percentage_24h.toFixed(2)"
-                :sd="coin.price_change_percentage_7d_in_currency.toFixed(2)"
-                :cap="Intl.NumberFormat('en', { notation: 'compact' }).format(coin.market_cap)" />
-        </tbody>
-    </table>
+                <the-row v-for="coin in coins" :key="coin.id" :num="coin.market_cap_rank" :icon="coin.image"
+                    :ticker="coin.symbol.toUpperCase()" :name="coin.name" :price="coin.current_price"
+                    :tfh="coin.price_change_percentage_24h.toFixed(2)"
+                    :sd="coin.price_change_percentage_7d_in_currency.toFixed(2)"
+                    :cap="Intl.NumberFormat('en', { notation: 'compact' }).format(coin.market_cap)" />
+            </tbody>
+        </table>
+
+    </div>
     <div v-if="loading" class="flex flex-row align-middle items-center justify-center mt-16">
         <svg xmlns="http: //www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
             class="animate-spin w-16 h-16 text-black">
