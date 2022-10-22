@@ -4,7 +4,9 @@
     <router-view></router-view>
     <div class="flex md:flex-row flex-col justify-between mt-4">
       <the-card class="mr-5" title="DEFI market cap" :content="defiMarketCap" color="bg-lime-200" />
-      <the-card class="mr-5" title="Trending coin" :content="trending" color="bg-indigo-100" />
+      <router-link :to="'/coin/' + trending" class="flex w-full mb-5 md:mb-0 mr-5">
+        <the-card title="Trending coin" :content="trending" color="bg-indigo-100" />
+      </router-link>
       <the-card class="" title="BTC Dominance" :content="btcDominance" color="bg-yellow-100" />
     </div>
     <the-table />
@@ -35,7 +37,7 @@ export default {
   mounted() {
     axios
       .get('https://api.coingecko.com/api/v3/search/trending')
-      .then(response => (this.trending = response.data.coins[0].item.name + " [" + response.data.coins[0].item.symbol + "]"))
+      .then(response => (this.trending = response.data.coins[0].item.id))
     axios
       .get('https://api.coingecko.com/api/v3/global/decentralized_finance_defi')
       .then(response => (this.defiMarketCap = Intl.NumberFormat('en', { notation: 'compact' }).format(response.data.data.defi_market_cap)))
