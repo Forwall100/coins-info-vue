@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!loading" class="flex md:flex-row flex-col mt-5 md:w-3/4 justify-between">
+    <div v-if="!loading" class="flex md:flex-row flex-col mt-5 md:w-3/4 md:items-start items-center justify-between">
         <div class="flex flex-col w-2/3">
             <div class="flex">
                 <img :src="icon" class="w-20 h-20">
@@ -29,19 +29,19 @@
                     </div>
                 </div>
                 <div class="flex md:flex-row flex-col justify-between mt-5">
-                    <span class="flex flex-col items-center border-black border-2 px-16 py-2 mt-5">
+                    <span class="flex flex-col items-center border-black border-2 px-14 py-2 mt-5">
                         <h1 class="text-gray-500">Market Cap</h1>
                         <h1 class="font-semibold">${{cap}}</h1>
                     </span>
-                    <span class="flex flex-col  items-center border-black border-2 px-16 py-2 mt-5">
+                    <span class="flex flex-col  items-center border-black border-2 px-14 py-2 mt-5">
                         <h1 class="text-gray-500">Volume</h1>
                         <h1 class="font-semibold">${{volume}}</h1>
                     </span>
-                    <span class="flex flex-col items-center border-black border-2 px-16 py-2 mt-5">
+                    <span class="flex flex-col items-center border-black border-2 px-14 py-2 mt-5">
                         <h1 class="text-gray-500">ATH</h1>
                         <h1 class="font-semibold">${{ath}}</h1>
                     </span>
-                    <span class="flex flex-col border-black items-center border-2 px-16 py-2 mt-5">
+                    <span class="flex flex-col border-black items-center border-2 px-14 py-2 mt-5">
                         <h1 class="text-gray-500">Total Supply</h1>
                         <h1 class="font-semibold">{{total_supply}}</h1>
                     </span>
