@@ -7,11 +7,11 @@
                 <img class="ml-1" src="./../assets/arrow.svg" width="14px" height="14px">
             </li>
             <li class="transition-all ease-in-out duration-75 ml-5 flex flex-row hover:border-b-2 border-black">
-                <a href="">TOP 100</a>
+                <a href="">TOP</a>
                 <img class="ml-1" src="./../assets/arrow.svg" width="14px" height="14px">
             </li>
             <li class="transition-all ease-in-out duration-75 ml-5 flex flex-row hover:border-b-2 border-black ">
-                <a href="">SEARCH</a>
+                <a href="#/search">SEARCH</a>
                 <img class="ml-1" src="./../assets/arrow.svg" width="14px" height="14px">
             </li>
         </ul>
