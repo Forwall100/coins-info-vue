@@ -46,9 +46,14 @@
                         <h1 class="font-semibold">{{total_supply}}</h1>
                     </span>
                 </div>
-                <div class="flex mt-10 w-full">
-                {{description}}
+                <div class="flex flex-col">
+                    <h1 class="text-2xl font-semibold mt-8 mb-3">{{symbol}} price chart</h1>
+                    <coingecko-coin-compare-chart-widget :coin-ids="id" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
                 </div>
+                <div class="flex mt-10 w-full">
+                    {{description}}
+                </div>
+
             </div>
         </div>
         <div class="flex flex-col md:ml-28 items-center md:items-start mt-10">
@@ -75,14 +80,13 @@
                 bg-white text-black border-black ">{{github_stars}}</a>
             </div>
         </div>
-
-    </div>
-    <div v-if="loading" class="flex flex-row align-middle items-center justify-center mt-16">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
-            class="animate-spin w-16 h-16 text-black">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-        </svg>
+        <div v-if="loading" class="flex flex-row align-middle items-center justify-center mt-16">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1"
+                stroke="currentColor" class="animate-spin w-16 h-16 text-black">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+        </div>
     </div>
 </template>
 <script>
