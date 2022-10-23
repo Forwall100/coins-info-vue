@@ -5,16 +5,14 @@
             <div class=" border-black flex flex-row justify-between">
                 <input type="text"
                     class="w-full mr-5 transition duration-100 border-b-2 focus:border-black border-white outline-none text-lg"
-                    placeholder="Input coin..." v-model="inputValue"
-                    @keyup.esc="coins = []"
-                    >
+                    placeholder="Input coin..." v-model="inputValue" @keyup.esc="coins = []">
                 <button type="submit" class="text-lg">
                     search
                 </button>
             </div>
         </form>
         <transition name="slide-fade">
-            <div v-if="!loading" >
+            <div v-if="!loading">
                 <search-result :coins="coins"></search-result>
             </div>
         </transition>
@@ -53,23 +51,28 @@ export default {
     methods: {
         search() {
             this.loading = true;
-            axios
-                .get(`https://api.coingecko.com/api/v3/search?query=${this.inputValue}`)
-                .then(responce => (this.coins = responce.data.coins))
-                .catch(error => {
-                    this.errorMessage = error.message
-                })
-                .finally(() => {
-                    if (this.coins.length == 0) {
-                        this.errorMessage = 'Nothing found'
-                        this.loading = false
-                    }
-                    else {
-                        this.errorMessage = ''
-                        this.loading = false
-                        this.inputValue = ''
-                    }
-                })
+            if (this.inputValue != '') {
+                axios
+                    .get(`https://api.coingecko.com/api/v3/search?query=${this.inputValue}`)
+                    .then(responce => (this.coins = responce.data.coins))
+                    .catch(error => {
+                        this.errorMessage = error.message
+                    })
+                    .finally(() => {
+                        if (this.coins.length == 0) {
+                            this.errorMessage = 'Nothing found'
+                            this.loading = false
+                        }
+                        else {
+                            this.errorMessage = ''
+                            this.loading = false
+                            this.inputValue = ''
+                        }
+                    })
+            } else{
+                this.errorMessage = 'Nothing found'
+                this.loading = false
+            }
         }
     }
 }
@@ -89,5 +92,4 @@ export default {
     transform: translateX(100px);
     opacity: 0;
 }
-
 </style>
