@@ -14,6 +14,7 @@ export default {
         TheHeader
     },
     mounted() {
+        document.title = "Search"
     }
 }
 </script>
