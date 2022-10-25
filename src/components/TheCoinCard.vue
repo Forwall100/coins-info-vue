@@ -48,7 +48,8 @@
                 </div>
                 <div class="flex flex-col">
                     <h1 class="text-2xl font-semibold mt-8 mb-3">{{symbol}} price chart</h1>
-                    <coingecko-coin-compare-chart-widget :coin-ids="id" currency="usd" locale="en"></coingecko-coin-compare-chart-widget>
+                    <coingecko-coin-compare-chart-widget :coin-ids="id" currency="usd" locale="en">
+                    </coingecko-coin-compare-chart-widget>
                 </div>
                 <div class="flex mt-10 w-full">
                     {{description}}
@@ -66,18 +67,24 @@
             </div>
             <div class="flex items-center mt-4">
                 <h1>Twitter followers: </h1>
-                <a class="border-2 px-4 py-1 ml-3 
-                bg-white text-black border-black ">{{twitter_followers}}</a>
+                <a :href="twitter_link" class="hover:bg-black 
+                hover:text-white border-2 px-4 py-1 ml-3 
+                bg-white text-black border-black 
+                hover=cursor-pointer">{{twitter_followers}}</a>
             </div>
             <div class="flex items-center mt-4">
                 <h1>Reddit followers: </h1>
-                <a class="border-2 px-4 py-1 ml-3 
-                bg-white text-black border-black ">{{reddit_followers}}</a>
+                <a :href="reddit_link" class="hover:bg-black 
+                hover:text-white border-2 px-4 py-1 ml-3 
+                bg-white text-black border-black 
+                hover=cursor-pointer">{{reddit_followers}}</a>
             </div>
             <div class="flex items-center mt-4">
                 <h1>GitHub stars: </h1>
-                <a class="border-2 px-4 py-1 ml-3 
-                bg-white text-black border-black ">{{github_stars}}</a>
+                <a :href="github_link" class="hover:bg-black 
+                hover:text-white border-2 px-4 py-1 ml-3 
+                bg-white text-black border-black 
+                hover=cursor-pointer">{{github_stars}}</a>
             </div>
         </div>
         <div v-if="loading" class="flex flex-row align-middle items-center justify-center mt-16">
@@ -112,6 +119,9 @@ export default {
             reddit_followers: 0,
             github_stars: 0,
             description: '',
+            twitter_link: 0,
+            reddit_link: 0,
+            github_link: 0,
             loading: false
         }
     },
@@ -136,8 +146,12 @@ export default {
                 this.website = responce.data.links.homepage[0]
                 this.twitter_followers = responce.data.community_data.twitter_followers.toLocaleString('ru')
                 this.reddit_followers = responce.data.community_data.reddit_subscribers.toLocaleString('ru')
+                this.reddit_link = responce.data.links.subreddit_url.toLocaleString('ru')
+                this.twitter_link = 'https://twitter.com/' + responce.data.links.twitter_screen_name.toLocaleString('ru')
+                this.github_link = responce.data.links.repos_url.github[0].toLocaleString('ru')
                 this.github_stars = responce.data.developer_data.stars.toLocaleString('ru')
                 this.description = responce.data.description.en.replace(/<[^>]*>/g, '');
+                document.title = this.name + " Price in USD"
             })
             .finally(() => this.loading = false)
     },
@@ -163,8 +177,12 @@ export default {
                     this.website = responce.data.links.homepage[0]
                     this.twitter_followers = responce.data.community_data.twitter_followers.toLocaleString('ru')
                     this.reddit_followers = responce.data.community_data.reddit_subscribers.toLocaleString('ru')
+                    this.reddit_link = responce.data.links.subreddit_url.toLocaleString('ru')
+                    this.twitter_link = 'https://twitter.com/' + responce.data.links.twitter_screen_name.toLocaleString('ru')
+                    this.github_link = responce.data.links.repos_url.github[0].toLocaleString('ru')
                     this.github_stars = responce.data.developer_data.stars.toLocaleString('ru')
                     this.description = responce.data.description.en
+                    document.title = this.name + " Price in USD"
                 })
                 .finally(() => this.loading = false)
         }

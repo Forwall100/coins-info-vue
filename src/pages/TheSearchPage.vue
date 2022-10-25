@@ -12,6 +12,8 @@ export default {
     components: {
         TheSearch,
         TheHeader
+    },
+    mounted() {
     }
 }
 </script>

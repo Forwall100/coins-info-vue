@@ -6,7 +6,7 @@ import TheCoin from "./pages/TheCoin.vue"
 export default createRouter({
     history: createWebHashHistory(),
     routes: [
-        {path: '/', component: TheHome},
+        {path: '/', component: TheHome, meta: {title: 'Home page',}},
         {path: '/search', component: TheSearchPage},
         {path: '/coin/:id', component: TheCoin}
     ]

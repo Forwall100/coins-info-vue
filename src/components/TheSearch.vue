@@ -22,7 +22,6 @@
             </div>
         </transition>
     </div>
-
     <div v-if="loading" class="flex flex-row align-middle items-center justify-center mt-16">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
             class="animate-spin w-16 h-16 text-black">
@@ -35,10 +34,12 @@
 <script>
 import axios from 'axios'
 import SearchResult from './SearchResult.vue'
+import TheHeader from './TheHeader.vue'
 
 export default {
     components: {
-        SearchResult
+        SearchResult,
+        TheHeader
     },
     data() {
         return {
@@ -69,7 +70,7 @@ export default {
                             this.inputValue = ''
                         }
                     })
-            } else{
+            } else {
                 this.errorMessage = 'Nothing found'
                 this.loading = false
             }
