@@ -1,7 +1,7 @@
 <template>
     <div v-if="!loading" class="flex md:flex-row flex-col mt-5 md:w-5/6 md:items-start items-center justify-between">
         <div class="flex flex-col w-2/3">
-            <div class="flex">
+            <div class="flex md:flex-row flex-col">
                 <img :src="icon" class="w-20 h-20">
                 <div class="flex flex-col">
                     <div class="flex ml-2">
@@ -13,13 +13,13 @@
             </div>
             <div class="flex flex-col mt-7">
                 <p class="text-md text-gray-500">{{ symbol }} Price</p>
-                <div class="flex">
+                <div class="flex md:flex-row flex-col">
                     <h1 class="text-7xl font-black">${{ price }}</h1>
                     <span v-if="tfh >= 0"
-                        class="rounded-lg text-2xl flex ml-4 bg-[#aff51f] items-center px-4 text-[#172004] font-bold">{{ tfh
+                        class="rounded-lg text-2xl mt-5 flex ml-4 bg-[#aff51f] items-center px-4 text-[#172004] font-bold">{{ tfh
                         }}%</span>
                     <span v-if="tfh < 0"
-                        class="rounded-lg text-2xl flex ml-4 bg-[#f51f44] items-center px-4 text-white font-bold">{{ tfh
+                        class="rounded-lg text-2xl mt-5 flex ml-4 bg-[#f51f44] items-center px-4 text-white font-bold">{{ tfh
                         }}%</span>
                 </div>
                 <div class="flex flex-col mt-5">
@@ -31,20 +31,20 @@
                     </div>
                 </div>
                 <div class="flex font-semibold md:flex-row flex-col justify-between mt-5">
-                    <span class="flex flex-col items-center border-black border-4 px-14 py-2 mt-5 rounded-2xl">
+                    <span class="flex flex-col items-center border-black border-4 px-14 py-2 mt-5 mr-4 rounded-2xl">
                         <h1 class="text-gray-500">Market Cap</h1>
                         <h1 class="font-semibold">${{ cap }}</h1>
                     </span>
-                    <span class="flex flex-col  items-center border-black border-4 px-14 py-2 mt-5 rounded-2xl">
+                    <span class="flex flex-col  items-center border-black border-4 px-14 py-2 mt-5 mr-4 rounded-2xl">
                         <h1 class="text-gray-500">Volume</h1>
                         <h1 class="font-semibold">${{ volume }}</h1>
                     </span>
-                    <span class="flex flex-col items-center border-black border-4 px-14 py-2 mt-5 rounded-2xl">
+                    <span class="flex flex-col items-center border-black border-4 px-14 py-2 mt-5 mr-4 rounded-2xl">
                         <h1 class="text-gray-500">ATH</h1>
                         <h1 class="font-semibold">${{ ath }}</h1>
                     </span>
-                    <span class="flex flex-col border-black items-center border-4 px-14 py-2 mt-5 rounded-2xl">
-                        <h1 class="text-gray-500">Total Supply</h1>
+                    <span class="flex flex-col border-black items-center border-4 px-14 py-2 mt-5 mr-4 rounded-2xl">
+                        <h1 class="text-gray-500">All Supply</h1>
                         <h1 class="font-semibold">{{ total_supply }}</h1>
                     </span>
                 </div>
@@ -52,9 +52,6 @@
                     <h1 class="text-2xl font-semibold mt-8 mb-3">{{ symbol }} price chart</h1>
                     <coingecko-coin-compare-chart-widget :coin-ids="id" currency="usd" locale="en">
                     </coingecko-coin-compare-chart-widget>
-                </div>
-                <div class="flex mt-10 w-full">
-                    {{ description }}
                 </div>
 
             </div>
@@ -87,6 +84,12 @@
                 hover:text-white border-4 px-4 py-1 ml-3 
                 bg-white text-black border-black 
                 hover=cursor-pointer">{{ github_stars }}</a>
+            </div>
+            <div @click="show_all_desc = !show_all_desc" v-if="!show_all_desc" class="mt-10 font-normal text-transparent bg-clip-text bg-gradient-to-b from-black via-black to-gray-100 hover:to-black cursor-pointer">
+                {{description.substring(0, 600) + '...'}}
+            </div>
+            <div v-else class="mt-10 font-normal ">
+                {{description}}
             </div>
         </div>
         <div v-if="loading" class="flex flex-row align-middle items-center justify-center mt-16">
@@ -124,6 +127,7 @@ export default {
             twitter_link: 0,
             reddit_link: 0,
             github_link: 0,
+            show_all_desc: false,
             loading: false
         }
     },
