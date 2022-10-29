@@ -1,10 +1,10 @@
 <template>
     <div
-        class="flex flex-col justify-between mt-5 border-2 border-black py-3 px-5 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        class="flex flex-col justify-between mt-5 border-4 text-xl font-bold border-black py-3 px-5 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
         <form @submit.prevent="search()">
             <div class=" border-black flex flex-row justify-between">
                 <input type="text"
-                    class="w-full mr-5 transition duration-100 border-b-2 focus:border-black border-white outline-none text-lg"
+                    class="w-full mr-5 transition duration-100 focus:bg-black focus:text-white focus:placeholder-white rounded-full border-white outline-none text-lg px-5 py-2"
                     placeholder="Input coin..." v-model="inputValue" @keyup.esc="coins = []">
                 <button type="submit" class="text-lg">
                     search

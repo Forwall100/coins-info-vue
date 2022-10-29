@@ -3,11 +3,11 @@
     <the-header />
     <router-view></router-view>
     <div class="flex md:flex-row flex-col justify-between mt-4">
-      <the-card class="mr-5" title="DEFI market cap" :content="defiMarketCap" color="bg-lime-200" />
+      <the-card class="mr-5" title="DEFI market cap" :content="defiMarketCap" color="bg-[#ffd500]" />
       <router-link :to="'/coin/' + trending" class="flex w-full mb-5 md:mb-0 mr-5">
-        <the-card title="Trending coin" :content="trending" color="bg-indigo-100" />
+        <the-card title="Trending coin" :content="trending" color="bg-[#1f59f5] hover:bg-[#311aca] text-white" />
       </router-link>
-      <the-card class="" title="BTC Dominance" :content="btcDominance" color="bg-yellow-100" />
+      <the-card class="" title="BTC Dominance" :content="btcDominance" color="bg-[#aff51f]" />
     </div>
     <the-table />
   </div>

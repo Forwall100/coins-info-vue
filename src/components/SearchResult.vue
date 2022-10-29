@@ -1,5 +1,5 @@
 <template>
-    <div class="transition duration-100 flex flex-row border-b-2 border-white hover:cursor-pointer hover:border-black py-2"
+    <div class="transition duration-100 flex flex-row border-b-4 border-white hover:cursor-pointer hover:border-black py-2"
         v-for="coin in coins" :key="coin.id">
         <router-link :to="'/coin/' + coin.id">
             <div class="flex w-full">

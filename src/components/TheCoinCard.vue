@@ -1,90 +1,92 @@
 <template>
-    <div v-if="!loading" class="flex md:flex-row flex-col mt-5 md:w-3/4 md:items-start items-center justify-between">
+    <div v-if="!loading" class="flex md:flex-row flex-col mt-5 md:w-5/6 md:items-start items-center justify-between">
         <div class="flex flex-col w-2/3">
             <div class="flex">
                 <img :src="icon" class="w-20 h-20">
                 <div class="flex flex-col">
                     <div class="flex ml-2">
-                        <h1 class="text-3xl font-semibold">{{name}}</h1>
-                        <h1 class="text-xl ml-2 text-gray-500">{{symbol}}</h1>
+                        <h1 class="text-5xl font-bold">{{ name }}</h1>
+                        <h1 class="text-2xl ml-2 text-gray-500">{{ symbol }}</h1>
                     </div>
-                    <span class="flex bg-black text-white justify-center ml-2">Rank #{{rank}}</span>
+                    <span class="flex bg-black text-white justify-center ml-2 text-xl font-semibold mt-2">Rank #{{ rank }}</span>
                 </div>
             </div>
-            <div class="flex flex-col mt-5">
-                <p class="text-md text-gray-500">{{symbol}} Price</p>
+            <div class="flex flex-col mt-7">
+                <p class="text-md text-gray-500">{{ symbol }} Price</p>
                 <div class="flex">
-                    <h1 class="text-4xl font-bold">${{price}}</h1>
+                    <h1 class="text-7xl font-black">${{ price }}</h1>
                     <span v-if="tfh >= 0"
-                        class="flex ml-4 bg-emerald-100 items-center px-4 text-emerald-800 font-semibold">{{tfh}}%</span>
+                        class="rounded-lg text-2xl flex ml-4 bg-[#aff51f] items-center px-4 text-[#172004] font-bold">{{ tfh
+                        }}%</span>
                     <span v-if="tfh < 0"
-                        class="flex ml-4 bg-red-100 items-center px-4 text-red-800 font-semibold">{{tfh}}%</span>
+                        class="rounded-lg text-2xl flex ml-4 bg-[#f51f44] items-center px-4 text-white font-bold">{{ tfh
+                        }}%</span>
                 </div>
                 <div class="flex flex-col mt-5">
                     <h1 class="text-gray-500 mb-2">Price range 24h</h1>
-                    <span class="h-2 bg-gradient-to-r from-orange-200 to-emerald-200"></span>
+                    <span class="rounded-full h-2 bg-gradient-to-r from-[#f51f44] to-[#aff51f]"></span>
                     <div class="flex justify-between mt-2">
                         <div>low= <span class="font-semibold">${{low_price}}</span></div>
-                        <div>High= <span class="font-semibold">${{high_price}}</span></div>
+                        <div>High= <span class="font-semibold">${{ high_price }}</span></div>
                     </div>
                 </div>
-                <div class="flex md:flex-row flex-col justify-between mt-5">
-                    <span class="flex flex-col items-center border-black border-2 px-14 py-2 mt-5">
+                <div class="flex font-semibold md:flex-row flex-col justify-between mt-5">
+                    <span class="flex flex-col items-center border-black border-4 px-14 py-2 mt-5 rounded-2xl">
                         <h1 class="text-gray-500">Market Cap</h1>
-                        <h1 class="font-semibold">${{cap}}</h1>
+                        <h1 class="font-semibold">${{ cap }}</h1>
                     </span>
-                    <span class="flex flex-col  items-center border-black border-2 px-14 py-2 mt-5">
+                    <span class="flex flex-col  items-center border-black border-4 px-14 py-2 mt-5 rounded-2xl">
                         <h1 class="text-gray-500">Volume</h1>
-                        <h1 class="font-semibold">${{volume}}</h1>
+                        <h1 class="font-semibold">${{ volume }}</h1>
                     </span>
-                    <span class="flex flex-col items-center border-black border-2 px-14 py-2 mt-5">
+                    <span class="flex flex-col items-center border-black border-4 px-14 py-2 mt-5 rounded-2xl">
                         <h1 class="text-gray-500">ATH</h1>
-                        <h1 class="font-semibold">${{ath}}</h1>
+                        <h1 class="font-semibold">${{ ath }}</h1>
                     </span>
-                    <span class="flex flex-col border-black items-center border-2 px-14 py-2 mt-5">
+                    <span class="flex flex-col border-black items-center border-4 px-14 py-2 mt-5 rounded-2xl">
                         <h1 class="text-gray-500">Total Supply</h1>
-                        <h1 class="font-semibold">{{total_supply}}</h1>
+                        <h1 class="font-semibold">{{ total_supply }}</h1>
                     </span>
                 </div>
                 <div class="flex flex-col">
-                    <h1 class="text-2xl font-semibold mt-8 mb-3">{{symbol}} price chart</h1>
+                    <h1 class="text-2xl font-semibold mt-8 mb-3">{{ symbol }} price chart</h1>
                     <coingecko-coin-compare-chart-widget :coin-ids="id" currency="usd" locale="en">
                     </coingecko-coin-compare-chart-widget>
                 </div>
                 <div class="flex mt-10 w-full">
-                    {{description}}
+                    {{ description }}
                 </div>
 
             </div>
         </div>
-        <div class="flex flex-col md:ml-28 items-center md:items-start mt-10">
-            <div class="flex items-center mt-4">
+        <div class="flex flex-col text-xl font-semibold md:ml-28 items-center md:items-start mt-10">
+            <div v-if="website != ''" class="flex items-center mt-4">
                 <h1>Website: </h1>
                 <a :href="website" class="hover:bg-black 
-                hover:text-white border-2 px-4 py-1 ml-3 
+                hover:text-white border-4 px-4 py-1 ml-3 
                 bg-white text-black border-black 
-                hover=cursor-pointer">{{website}}</a>
+                hover=cursor-pointer">{{ website }}</a>
             </div>
-            <div class="flex items-center mt-4">
+            <div v-if="twitter_link != ''" class="flex items-center mt-4">
                 <h1>Twitter followers: </h1>
                 <a :href="twitter_link" class="hover:bg-black 
-                hover:text-white border-2 px-4 py-1 ml-3 
+                hover:text-white border-4 px-4 py-1 ml-3 
                 bg-white text-black border-black 
-                hover=cursor-pointer">{{twitter_followers}}</a>
+                hover=cursor-pointer">{{ twitter_followers }}</a>
             </div>
-            <div class="flex items-center mt-4">
+            <div v-if="reddit_link != ''" class="flex items-center mt-4">
                 <h1>Reddit followers: </h1>
                 <a :href="reddit_link" class="hover:bg-black 
-                hover:text-white border-2 px-4 py-1 ml-3 
+                hover:text-white border-4 px-4 py-1 ml-3 
                 bg-white text-black border-black 
-                hover=cursor-pointer">{{reddit_followers}}</a>
+                hover=cursor-pointer">{{ reddit_followers }}</a>
             </div>
-            <div class="flex items-center mt-4">
+            <div v-if="github_link != ''" class="flex items-center mt-4">
                 <h1>GitHub stars: </h1>
                 <a :href="github_link" class="hover:bg-black 
-                hover:text-white border-2 px-4 py-1 ml-3 
+                hover:text-white border-4 px-4 py-1 ml-3 
                 bg-white text-black border-black 
-                hover=cursor-pointer">{{github_stars}}</a>
+                hover=cursor-pointer">{{ github_stars }}</a>
             </div>
         </div>
         <div v-if="loading" class="flex flex-row align-middle items-center justify-center mt-16">
@@ -106,7 +108,7 @@ export default {
             name: "",
             rank: 0,
             symbol: "",
-            price: 0,
+            price: "",
             tfh: 0,
             low_price: 0,
             high_price: 0,

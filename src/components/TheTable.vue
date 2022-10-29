@@ -1,6 +1,6 @@
 <template>
-    <div class="overflow-x-scroll overflow-y-visible p-0">
-        <table v-if="!loading" class="border-spacing-3 border-collapse w-full mt-4">
+    <div v-if="!loading" class="overflow-x-scroll overflow-y-visible p-0 font-bold text-lg border-4 mt-4 px-10 border-black">
+        <table  class="border-spacing-3 border-collapse w-full mt-4">
             <tbody class="sm:table-row-group inline-block">
                 <tr class="font-bold">
                     <td class="hover:text-blue-900 cursor-pointer select-none" width="3%"
