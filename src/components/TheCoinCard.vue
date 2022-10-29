@@ -8,7 +8,8 @@
                         <h1 class="text-5xl font-bold">{{ name }}</h1>
                         <h1 class="text-2xl ml-2 text-gray-500">{{ symbol }}</h1>
                     </div>
-                    <span class="flex bg-black text-white justify-center ml-2 text-xl font-semibold mt-2">Rank #{{ rank }}</span>
+                    <span class="flex bg-black text-white justify-center ml-2 text-xl font-semibold mt-2">Rank #{{ rank
+                    }}</span>
                 </div>
             </div>
             <div class="flex flex-col mt-7">
@@ -16,17 +17,19 @@
                 <div class="flex md:flex-row flex-col">
                     <h1 class="text-7xl font-black">${{ price }}</h1>
                     <span v-if="tfh >= 0"
-                        class="rounded-lg text-2xl mt-5 flex ml-4 bg-[#aff51f] items-center px-4 text-[#172004] font-bold">{{ tfh
+                        class="rounded-lg text-2xl mt-5 flex ml-4 bg-[#aff51f] items-center px-4 text-[#172004] font-bold">{{
+                                tfh
                         }}%</span>
                     <span v-if="tfh < 0"
-                        class="rounded-lg text-2xl mt-5 flex ml-4 bg-[#f51f44] items-center px-4 text-white font-bold">{{ tfh
+                        class="rounded-lg text-2xl mt-5 flex ml-4 bg-[#f51f44] items-center px-4 text-white font-bold">{{
+                                tfh
                         }}%</span>
                 </div>
                 <div class="flex flex-col mt-5">
                     <h1 class="text-gray-500 mb-2">Price range 24h</h1>
                     <span class="rounded-full h-2 bg-gradient-to-r from-[#f51f44] to-[#aff51f]"></span>
                     <div class="flex justify-between mt-2">
-                        <div>low= <span class="font-semibold">${{low_price}}</span></div>
+                        <div>low= <span class="font-semibold">${{ low_price }}</span></div>
                         <div>High= <span class="font-semibold">${{ high_price }}</span></div>
                     </div>
                 </div>
@@ -85,12 +88,16 @@
                 bg-white text-black border-black 
                 hover=cursor-pointer">{{ github_stars }}</a>
             </div>
-            <div @click="show_all_desc = !show_all_desc" v-if="!show_all_desc" class="mt-10 font-normal text-transparent bg-clip-text bg-gradient-to-b from-black via-black to-gray-100 hover:to-black cursor-pointer">
-                {{description.substring(0, 600) + '...'}}
-            </div>
-            <div v-else class="mt-10 font-normal ">
-                {{description}}
-            </div>
+
+            <transition name="slide-up">
+                <div @click="show_all_desc = !show_all_desc" v-if="!show_all_desc"
+                    class=" mt-10 font-normal border-l-4 pl-5 hover:border-black text-transparent bg-clip-text bg-gradient-to-b from-black via-black to-gray-100 hover:to-black cursor-pointer">
+                    {{ description.substring(0, 600) + '...' }}
+                </div>
+                <div v-else class="mt-10 font-normal border-l-4 pl-5 border-black">
+                    {{ description }}
+                </div>
+            </transition>
         </div>
         <div v-if="loading" class="flex flex-row align-middle items-center justify-center mt-16">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1"
@@ -195,3 +202,21 @@ export default {
     }
 }
 </script>
+
+<style>
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.1s ease-out;
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+</style>
